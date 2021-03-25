@@ -32,7 +32,7 @@
 //Allow flashing multimodule directly with TX(erky9x or opentx maintenance mode)
 //Instructions:https://github.com/pascallanger/DIY-Multiprotocol-TX-Module/blob/master/docs/Flash_from_Tx.md
 //To disable this feature add "//" at the begining of the next line.  Requires a compatible bootloader or upload method to be selected when you use the Multi 4-in-1 Boards Manager definitions.
-#define CHECK_FOR_BOOTLOADER
+// #define CHECK_FOR_BOOTLOADER
 
 
 /*******************/
