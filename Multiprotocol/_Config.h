@@ -74,10 +74,10 @@
 //4-in-1 modules have the A7105, CYRF6936, CC2500 and NRF24L01 RF chips installed
 //5-in-1 modules have all RF chips installed
 //!!!If a RF chip is present it MUST be marked as installed!!! or weird things will happen you have been warned.
-#define A7105_INSTALLED
-#define CYRF6936_INSTALLED
+// #define A7105_INSTALLED
+// #define CYRF6936_INSTALLED
 #define CC2500_INSTALLED
-#define NRF24L01_INSTALLED
+// #define NRF24L01_INSTALLED
 //#define SX1276_INSTALLED		// only supported on STM32 modules
 
 //Uncomment (remove //) if you have an internal 5-in-1 Multi module in a Jumper T18 or T-Lite.
@@ -137,10 +137,10 @@
 //It can be activated when flying indoor or small models since the distance is short or if a model is causing issues when flying closed to the TX.
 //By default low power selection is enabled on all rf chips, but you can disable it by commenting (add //) the lines below if you don't want to risk
 //flying a model with low power.
-#define A7105_ENABLE_LOW_POWER
-#define CYRF6936_ENABLE_LOW_POWER
+// #define A7105_ENABLE_LOW_POWER
+// #define CYRF6936_ENABLE_LOW_POWER
 #define CC2500_ENABLE_LOW_POWER
-#define NRF24L01_ENABLE_LOW_POWER
+// #define NRF24L01_ENABLE_LOW_POWER
 
 
 /*****************/
@@ -169,96 +169,96 @@
 //Comment the protocols you are not using with "//" to save Flash space.
 
 //The protocols below need an A7105 to be installed
-#define	AFHDS2A_A7105_INO
-#define	AFHDS2A_RX_A7105_INO
-#define	BUGS_A7105_INO
-#define	FLYSKY_A7105_INO
-#define	HEIGHT_A7105_INO
-#define	HUBSAN_A7105_INO
-#define	JOYSWAY_A7105_INO
-#define	KYOSHO_A7105_INO
-#define	PELIKAN_A7105_INO
-#define	WFLY2_A7105_INO
+// #define	AFHDS2A_A7105_INO
+// #define	AFHDS2A_RX_A7105_INO
+// #define	BUGS_A7105_INO
+// #define	FLYSKY_A7105_INO
+// #define	HEIGHT_A7105_INO
+// #define	HUBSAN_A7105_INO
+// #define	JOYSWAY_A7105_INO
+// #define	KYOSHO_A7105_INO
+// #define	PELIKAN_A7105_INO
+// #define	WFLY2_A7105_INO
 
 //The protocols below need a CYRF6936 to be installed
-#define	DEVO_CYRF6936_INO
-#define	DSM_CYRF6936_INO
-#define	DSM_RX_CYRF6936_INO
-#define	E010R5_CYRF6936_INO
-#define	E129_CYRF6936_INO
-#define	J6PRO_CYRF6936_INO
-#define	MLINK_CYRF6936_INO
-#define	TRAXXAS_CYRF6936_INO
-#define	WFLY_CYRF6936_INO
-#define	WK2x01_CYRF6936_INO
+// #define	DEVO_CYRF6936_INO
+// #define	DSM_CYRF6936_INO
+// #define	DSM_RX_CYRF6936_INO
+// #define	E010R5_CYRF6936_INO
+// #define	E129_CYRF6936_INO
+// #define	J6PRO_CYRF6936_INO
+// #define	MLINK_CYRF6936_INO
+// #define	TRAXXAS_CYRF6936_INO
+// #define	WFLY_CYRF6936_INO
+// #define	WK2x01_CYRF6936_INO
 
 //The protocols below need a CC2500 to be installed
-#define	CORONA_CC2500_INO
-#define	E016HV2_CC2500_INO
-#define	ESKY150V2_CC2500_INO
+// #define	CORONA_CC2500_INO
+// #define	E016HV2_CC2500_INO
+// #define	ESKY150V2_CC2500_INO
 #define	FRSKYL_CC2500_INO
 #define	FRSKYD_CC2500_INO
 #define	FRSKYV_CC2500_INO
 #define	FRSKYX_CC2500_INO
 #define	FRSKY_RX_CC2500_INO
-#define	HITEC_CC2500_INO
-#define	HOTT_CC2500_INO
-#define	SCANNER_CC2500_INO
-#define	FUTABA_CC2500_INO
-#define	SKYARTEC_CC2500_INO
-#define	REDPINE_CC2500_INO
-#define	RLINK_CC2500_INO
+// #define	HITEC_CC2500_INO
+// #define	HOTT_CC2500_INO
+// #define	SCANNER_CC2500_INO
+// #define	FUTABA_CC2500_INO
+// #define	SKYARTEC_CC2500_INO
+// #define	REDPINE_CC2500_INO
+// #define	RLINK_CC2500_INO
 
 //The protocols below need a NRF24L01 to be installed
-#define	ASSAN_NRF24L01_INO
-#define	BAYANG_NRF24L01_INO
-#define	BAYANG_RX_NRF24L01_INO
-#define	BUGSMINI_NRF24L01_INO
-#define	CABELL_NRF24L01_INO
-#define	CFLIE_NRF24L01_INO
-#define	CG023_NRF24L01_INO
-#define	CX10_NRF24L01_INO		//Include Q2X2 protocol
-#define	DM002_NRF24L01_INO
-#define	E016H_NRF24L01_INO
-#define	E01X_NRF24L01_INO
-#define	ESKY_NRF24L01_INO
-#define	ESKY150_NRF24L01_INO
-#define	FQ777_NRF24L01_INO
-#define	FX816_NRF24L01_INO
-#define	FY326_NRF24L01_INO
-#define	GW008_NRF24L01_INO
-#define	HISKY_NRF24L01_INO
-#define	HONTAI_NRF24L01_INO
-#define	H8_3D_NRF24L01_INO
-#define	JJRC345_NRF24L01_INO
-#define	KN_NRF24L01_INO
-#define	LOLI_NRF24L01_INO
-#define	NCC1701_NRF24L01_INO
-#define	POTENSIC_NRF24L01_INO
-#define	PROPEL_NRF24L01_INO
-#define	REALACC_NRF24L01_INO
-#define	SHENQI_NRF24L01_INO
-#define	SYMAX_NRF24L01_INO
-#define	TIGER_NRF24L01_INO
-#define	V2X2_NRF24L01_INO
-#define	V761_NRF24L01_INO
-#define	YD717_NRF24L01_INO
-#define	ZSX_NRF24L01_INO
+// #define	ASSAN_NRF24L01_INO
+// #define	BAYANG_NRF24L01_INO
+// #define	BAYANG_RX_NRF24L01_INO
+// #define	BUGSMINI_NRF24L01_INO
+// #define	CABELL_NRF24L01_INO
+// #define	CFLIE_NRF24L01_INO
+// #define	CG023_NRF24L01_INO
+// #define	CX10_NRF24L01_INO		//Include Q2X2 protocol
+// #define	DM002_NRF24L01_INO
+// #define	E016H_NRF24L01_INO
+// #define	E01X_NRF24L01_INO
+// #define	ESKY_NRF24L01_INO
+// #define	ESKY150_NRF24L01_INO
+// #define	FQ777_NRF24L01_INO
+// #define	FX816_NRF24L01_INO
+// #define	FY326_NRF24L01_INO
+// #define	GW008_NRF24L01_INO
+// #define	HISKY_NRF24L01_INO
+// #define	HONTAI_NRF24L01_INO
+// #define	H8_3D_NRF24L01_INO
+// #define	JJRC345_NRF24L01_INO
+// #define	KN_NRF24L01_INO
+// #define	LOLI_NRF24L01_INO
+// #define	NCC1701_NRF24L01_INO
+// #define	POTENSIC_NRF24L01_INO
+// #define	PROPEL_NRF24L01_INO
+// #define	REALACC_NRF24L01_INO
+// #define	SHENQI_NRF24L01_INO
+// #define	SYMAX_NRF24L01_INO
+// #define	TIGER_NRF24L01_INO
+// #define	V2X2_NRF24L01_INO
+// #define	V761_NRF24L01_INO
+// #define	YD717_NRF24L01_INO
+// #define	ZSX_NRF24L01_INO
 
 //The protocols below need either a CC2500 or NRF24L01 to be installed
-#define	GD00X_CCNRF_INO
-#define	KF606_CCNRF_INO
-#define	MJXQ_CCNRF_INO
-#define	MT99XX_CCNRF_INO
-#define	OMP_CCNRF_INO
-#define	Q303_CCNRF_INO
-#define	Q90C_CCNRF_INO
-#define	SLT_CCNRF_INO
-#define	V911S_CCNRF_INO
-#define	XK_CCNRF_INO
+// #define	GD00X_CCNRF_INO
+// #define	KF606_CCNRF_INO
+// #define	MJXQ_CCNRF_INO
+// #define	MT99XX_CCNRF_INO
+// #define	OMP_CCNRF_INO
+// #define	Q303_CCNRF_INO
+// #define	Q90C_CCNRF_INO
+// #define	SLT_CCNRF_INO
+// #define	V911S_CCNRF_INO
+// #define	XK_CCNRF_INO
 
 //The protocols below need a SX1276 to be installed
-#define	FRSKYR9_SX1276_INO
+// #define	FRSKYR9_SX1276_INO
 
 /***************************/
 /*** PROTOCOLS SETTINGS  ***/
@@ -298,7 +298,7 @@
 //In this section you can configure the telemetry.
 
 //If you do not plan using the telemetry comment this global setting using "//" and skip to the next section.
-#define TELEMETRY
+// #define TELEMETRY
 
 //Comment to invert the polarity of the output telemetry serial signal.
 //This function takes quite some flash space and processor power on an atmega.
@@ -306,42 +306,42 @@
 //A 9XR_PRO running erskyTX will work with both commented and uncommented depending on the radio setting Invert COM1 under the Telemetry menu.
 //On other addon/replacement boards like the 9xtreme board or the Ar9x board running erskyTX, you need to uncomment the line below.
 //For er9x it depends if you have an inveter mod or not on the telemetry pin. If you don't have an inverter comment this line.
-#define INVERT_TELEMETRY
+// #define INVERT_TELEMETRY
 //For STM32 and OrangeRX modules, comment to prevent the TX from forcing the serial telemetry polarity normal/invert.
-#define INVERT_TELEMETRY_TX
+// #define INVERT_TELEMETRY_TX
 
 //Sends Multi status and allow OpenTX and erskyTX to autodetect the telemetry format. Comment to disable.
-#define MULTI_TELEMETRY
+// #define MULTI_TELEMETRY
 
 //Work in progress: Sync OpenTX frames with the current protocol timing. This feature is only available on the STM32 module. Uncomment to enable.
 //#define MULTI_SYNC
 
 //Comment a line to disable a specific protocol telemetry
-#define DSM_TELEMETRY				// Forward received telemetry packet directly to TX to be decoded by er9x, erskyTX and OpenTX
-#define SPORT_TELEMETRY				// Use FrSkyX format to send/receive telemetry
-#define AFHDS2A_FW_TELEMETRY		// Forward received telemetry packet directly to TX to be decoded by erskyTX and OpenTX
+// #define DSM_TELEMETRY				// Forward received telemetry packet directly to TX to be decoded by er9x, erskyTX and OpenTX
+// #define SPORT_TELEMETRY				// Use FrSkyX format to send/receive telemetry
+// #define AFHDS2A_FW_TELEMETRY		// Forward received telemetry packet directly to TX to be decoded by erskyTX and OpenTX
 //#define AFHDS2A_HUB_TELEMETRY		// Use FrSkyD Hub format to send basic telemetry to TX like er9x
-#define HUB_TELEMETRY				// Use FrSkyD Hub format to send telemetry to TX
-#define BAYANG_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
-#define BUGS_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
-#define DEVO_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
-#define HUBSAN_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
-#define NCC1701_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
-#define OMP_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
-#define PROPEL_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
-#define CABELL_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
-#define RLINK_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
-#define WFLY2_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
-#define LOLI_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
+// #define HUB_TELEMETRY				// Use FrSkyD Hub format to send telemetry to TX
+// #define BAYANG_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
+// #define BUGS_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
+// #define DEVO_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
+// #define HUBSAN_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
+// #define NCC1701_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
+// #define OMP_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
+// #define PROPEL_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
+// #define CABELL_HUB_TELEMETRY		// Use FrSkyD Hub format to send telemetry to TX
+// #define RLINK_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
+// #define WFLY2_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
+// #define LOLI_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
 //#define MLINK_HUB_TELEMETRY			// Use FrSkyD Hub format to send telemetry to TX
-#define MLINK_FW_TELEMETRY			// Forward received telemetry packet directly to TX to be decoded by erskyTX and OpenTX
+// #define MLINK_FW_TELEMETRY			// Forward received telemetry packet directly to TX to be decoded by erskyTX and OpenTX
 //#define HITEC_HUB_TELEMETRY		// Use FrSkyD Hub format to send basic telemetry to the radios which can decode it like er9x, erskyTX and OpenTX
-#define HITEC_FW_TELEMETRY			// Forward received telemetry packets to be decoded by erskyTX and OpenTX
-#define SCANNER_TELEMETRY			// Forward spectrum scanner data to TX
-#define FRSKY_RX_TELEMETRY			// Forward channels data to TX
-#define AFHDS2A_RX_TELEMETRY		// Forward channels data to TX
-#define HOTT_FW_TELEMETRY			// Forward received telemetry packets to be decoded by erskyTX and OpenTX
-#define BAYANG_RX_TELEMETRY			// Forward channels data to TX
+// #define HITEC_FW_TELEMETRY			// Forward received telemetry packets to be decoded by erskyTX and OpenTX
+// #define SCANNER_TELEMETRY			// Forward spectrum scanner data to TX
+// #define FRSKY_RX_TELEMETRY			// Forward channels data to TX
+// #define AFHDS2A_RX_TELEMETRY		// Forward channels data to TX
+// #define HOTT_FW_TELEMETRY			// Forward received telemetry packets to be decoded by erskyTX and OpenTX
+// #define BAYANG_RX_TELEMETRY			// Forward channels data to TX
 
 /**************************/
 /***  TRAINER SETTINGS  ***/
@@ -351,7 +351,7 @@
 // On a STM32 module and with a simple hardware modification, you can go around this limitation using CPPM to send the trainer information to the radio.
 // Hardware modification: add a 1K resistor between the STM32 USART1 TX pin (Boot0 programming TX pin) and the radio bay pin 2.
 //Comment to disable
-#define SEND_CPPM
+// #define SEND_CPPM
 
 /****************************/
 /*** SERIAL MODE SETTINGS ***/
@@ -404,7 +404,7 @@
 
 /** Telemetry **/
 //Send simple FrSkyX telemetry using the FrSkyD telemetry format
-#define TELEMETRY_FRSKYX_TO_FRSKYD
+// #define TELEMETRY_FRSKYX_TO_FRSKYD
 
 /** Rotary Switch Protocol Selector Settings **/
 //The table below indicates which protocol to run when a specific position on the rotary switch has been selected.
