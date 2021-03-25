@@ -231,7 +231,7 @@ uint8_t packet_in[TELEMETRY_BUFFER_SIZE];//telemetry receiving packets
 	uint8_t TX_RSSI;
 	uint8_t RX_LQI;
 	uint8_t TX_LQI;
-	uint8_t telemetry_link=0; 
+	uint8_t telemetry_link=0;
 	uint8_t telemetry_counter=0;
 	uint8_t telemetry_lost;
 	#ifdef SPORT_SEND
@@ -252,7 +252,7 @@ uint8_t packet_in[TELEMETRY_BUFFER_SIZE];//telemetry receiving packets
 		bool rx_disable_lna;
 		uint16_t rx_rc_chan[16];
 	#endif
-	
+
 	#ifdef HOTT_FW_TELEMETRY
 		uint8_t HoTT_SerialRX_val=0;
 		bool HoTT_SerialRX=false;
@@ -320,12 +320,12 @@ void setup()
 		afio_cfg_debug_ports(AFIO_DEBUG_NONE);
 		pinMode(LED_pin,OUTPUT);
 		pinMode(LED2_pin,OUTPUT);
-		pinMode(A7105_CSN_pin,OUTPUT);
+		// pinMode(A7105_CSN_pin,OUTPUT);
 		pinMode(CC25_CSN_pin,OUTPUT);
-		pinMode(NRF_CSN_pin,OUTPUT);
-		pinMode(CYRF_CSN_pin,OUTPUT);
+		// pinMode(NRF_CSN_pin,OUTPUT);
+		// pinMode(CYRF_CSN_pin,OUTPUT);
 		pinMode(SPI_CSN_pin,OUTPUT);
-		pinMode(CYRF_RST_pin,OUTPUT);
+		// pinMode(CYRF_RST_pin,OUTPUT);
 		pinMode(PE1_pin,OUTPUT);
 		pinMode(PE2_pin,OUTPUT);
 		pinMode(TX_INV_pin,OUTPUT);
@@ -337,7 +337,7 @@ void setup()
 			#else
 				TX_INV_off;
 				RX_INV_off;
-			#endif	
+			#endif
 		#endif
 		pinMode(BIND_pin,INPUT_PULLUP);
 		pinMode(PPM_pin,INPUT);
@@ -345,7 +345,7 @@ void setup()
 		pinMode(S2_pin,INPUT_PULLUP);
 		pinMode(S3_pin,INPUT_PULLUP);
 		pinMode(S4_pin,INPUT_PULLUP);
-		
+
 		#ifdef MULTI_5IN1_INTERNAL
 			//pinMode(SX1276_RST_pin,OUTPUT);		// already done by LED2_pin
 			pinMode(SX1276_TXEN_pin,OUTPUT);		// PB0
@@ -354,7 +354,7 @@ void setup()
 			//Random pin
 			pinMode(RND_pin, INPUT_ANALOG);			// set up PB0 pin for analog input
 		#endif
-	
+
 		#if defined ENABLE_DIRECT_INPUTS
 			#if defined (DI1_PIN)
 				pinMode(DI1_PIN,INPUT_PULLUP);
@@ -379,7 +379,7 @@ void setup()
 
 		//Read module flash size
 		#ifndef DISABLE_FLASH_SIZE_CHECK
-			unsigned short *flashSize = (unsigned short *) (0x1FFFF7E0);// Address register 
+			unsigned short *flashSize = (unsigned short *) (0x1FFFF7E0);// Address register
 			debugln("Module Flash size: %dKB",(int)(*flashSize & 0xffff));
 			if((int)(*flashSize & 0xffff) < MCU_EXPECTED_FLASH_SIZE)  // Not supported by this project
 				while (true) { //SOS
@@ -459,7 +459,7 @@ void setup()
 	#endif
 
 	LED2_on;
-	
+
 	// Set Chip selects
 	#ifdef A7105_CSN_pin
 		A7105_CSN_on;
@@ -487,7 +487,7 @@ void setup()
 
 	//Wait for every component to start
 	delayMilliseconds(100);
-	
+
 	// Read status of bind button
 	if( IS_BIND_BUTTON_on )
 	{
@@ -505,12 +505,16 @@ void setup()
 		mode_select= 0x0F -(uint8_t)(((GPIOA->regs->IDR)>>4)&0x0F);
 	#else
 		mode_select =
-			((PROTO_DIAL1_ipr & _BV(PROTO_DIAL1_pin)) ? 0 : 1) + 
+			((PROTO_DIAL1_ipr & _BV(PROTO_DIAL1_pin)) ? 0 : 1) +
 			((PROTO_DIAL2_ipr & _BV(PROTO_DIAL2_pin)) ? 0 : 2) +
 			((PROTO_DIAL3_ipr & _BV(PROTO_DIAL3_pin)) ? 0 : 4) +
 			((PROTO_DIAL4_ipr & _BV(PROTO_DIAL4_pin)) ? 0 : 8);
 	#endif
-	//mode_select=1;
+    mode_select=9;      //PROTO_FRSKYV
+    // mode_select=10;  //PROTO_FRSKYD
+    // mode_select=11;  //PROTO_FRSKYX  CH_16
+    // mode_select=12;  //PROTO_FRSKYX  EU_16
+
     debugln("Protocol selection switch reads as %d", mode_select);
 
 	#ifdef ENABLE_PPM
@@ -567,7 +571,7 @@ void setup()
 		#else
 			const PPM_Parameters *PPM_prot_line=&My_PPM_prot[bank*14+mode_select-1];
 		#endif
-		
+
 		protocol		=	PPM_prot_line->protocol;
 		cur_protocol[1] =	protocol;
 		sub_protocol   	=	PPM_prot_line->sub_proto;
@@ -576,12 +580,12 @@ void setup()
 
 		//Forced frequency tuning values for CC2500 protocols
 		#if defined(FORCE_FRSKYD_TUNING) && defined(FRSKYD_CC2500_INO)
-			if(protocol==PROTO_FRSKYD) 
+			if(protocol==PROTO_FRSKYD)
 				option			=	FORCE_FRSKYD_TUNING;		// Use config-defined tuning value for FrSkyD
 			else
 		#endif
 		#if defined(FORCE_FRSKYL_TUNING) && defined(FRSKYL_CC2500_INO)
-			if(protocol==PROTO_FRSKYL) 
+			if(protocol==PROTO_FRSKYL)
 				option			=	FORCE_FRSKYL_TUNING;		// Use config-defined tuning value for FrSkyL
 			else
 		#endif
@@ -594,7 +598,7 @@ void setup()
 			if(protocol==PROTO_FRSKYX || protocol==PROTO_FRSKYX2)
 				option			=	FORCE_FRSKYX_TUNING;		// Use config-defined tuning value for FrSkyX
 			else
-		#endif 
+		#endif
 		#if defined(FORCE_FUTABA_TUNING) && defined(FUTABA_CC2500_INO)
 			if (protocol==PROTO_FUTABA)
 				option			=	FORCE_FUTABA_TUNING;			// Use config-defined tuning value for SFHSS
@@ -681,19 +685,20 @@ void setup()
 // Main
 // Protocol scheduler
 void loop()
-{ 
+{
 	uint16_t next_callback, diff;
 	uint8_t count=0;
 
 	while(1)
 	{
-		while(remote_callback==0 || IS_WAIT_BIND_on || IS_INPUT_SIGNAL_off)
+		while(remote_callback==0 || IS_WAIT_BIND_on || IS_INPUT_SIGNAL_off){
 			if(!Update_All())
 			{
 				cli();								// Disable global int due to RW of 16 bits registers
 				OCR1A=TCNT1;						// Callback should already have been called... Use "now" as new sync point.
 				sei();								// Enable global int
 			}
+        }
 		TX_MAIN_PAUSE_on;
 		tx_pause();
 		next_callback=remote_callback()<<1;
@@ -701,15 +706,15 @@ void loop()
 		tx_resume();
 		cli();										// Disable global int due to RW of 16 bits registers
 		OCR1A+=next_callback;						// Calc when next_callback should happen
-		#ifndef STM32_BOARD			
+		#ifndef STM32_BOARD
 			TIFR1=OCF1A_bm;							// Clear compare A=callback flag
 		#else
 			TIMER2_BASE->SR = 0x1E5F & ~TIMER_SR_CC1IF;	// Clear Timer2/Comp1 interrupt flag
-		#endif		
+		#endif
 		diff=OCR1A-TCNT1;							// Calc the time difference
 		sei();										// Enable global int
 		if((diff&0x8000) && !(next_callback&0x8000))
-		{ // Negative result=callback should already have been called... 
+		{ // Negative result=callback should already have been called...
 			debugln("Short CB:%d",next_callback);
 		}
 		else
@@ -730,7 +735,7 @@ void loop()
 			#endif
 			{
 				if(diff>900*2)
-				{	//If at least 1ms is available update values 
+				{	//If at least 1ms is available update values
 					if((diff&0x8000) && !(next_callback&0x8000))
 					{//Should never get here...
 						debugln("!!!BUG!!!");
@@ -749,7 +754,7 @@ void loop()
 					sei();							// Enable global int
 				}
 			}
-		}			
+		}
 	}
 }
 
@@ -785,10 +790,10 @@ bool Update_All()
 		if(mode_select!=MODE_SERIAL && IS_PPM_FLAG_on)		// PPM mode and a full frame has been received
 		{
 			uint32_t chan_or=chan_order;
-			uint8_t ch;		
+			uint8_t ch;
 			uint8_t channelsCount = PPM_chan_max;
-			
-			#ifdef ENABLE_DIRECT_INPUTS				
+
+			#ifdef ENABLE_DIRECT_INPUTS
 				#ifdef DI_CH1_read
 					PPM_data[channelsCount] = DI_CH1_read;
 					channelsCount++;
@@ -804,9 +809,9 @@ bool Update_All()
 				#ifdef DI_CH4_read
 					PPM_data[channelsCount] = DI_CH4_read;
 					channelsCount++;
-				#endif 
+				#endif
 			#endif
-			
+
 			for(uint8_t i=0;i<channelsCount;i++)
 			{ // update servo data without interrupts to prevent bad read
 				uint16_t val;
@@ -838,7 +843,7 @@ bool Update_All()
 		}
 	#endif //ENABLE_PPM
 	update_led_status();
-	
+
 	#ifdef SEND_CPPM
 		if ( telemetry_link & 0x80 )
 		{ // Protocol requests telemetry to be disabled
@@ -887,7 +892,7 @@ bool Update_All()
 void PPM_failsafe()
 {
 	static uint8_t counter=0;
-	
+
 	if(IS_BIND_IN_PROGRESS || IS_FAILSAFE_VALUES_on) 	// bind is not finished yet or Failsafe already being sent
 		return;
 	BIND_SET_INPUT;
@@ -925,7 +930,7 @@ static void update_channels_aux(void)
 	#ifdef REVERSE_RUDDER
 		reverse_channel(RUDDER);
 	#endif
-		
+
 	//Calc AUX flags
 	Channel_AUX=0;
 	for(uint8_t i=0;i<8;i++)
@@ -1094,7 +1099,7 @@ inline void tx_resume()
 					#ifdef STM32_BOARD
 						USART3_BASE->CR1 |= USART_CR1_TXEIE;
 					#else
-						UCSR0B |= _BV(UDRIE0);			
+						UCSR0B |= _BV(UDRIE0);
 					#endif
 				#else
 					resumeBashSerial();
@@ -1166,16 +1171,16 @@ static void protocol_init()
 			#endif
 		#endif
 		binding_idx=0;
-		
+
 		//Stop CPPM if it was previously running
 		#ifdef SEND_CPPM
 			release_trainer_ppm();
 		#endif
-		
+
 		//Set global ID and rx_tx_addr
 		MProtocol_id = RX_num + MProtocol_id_master;
 		set_rx_tx_addr(MProtocol_id);
-		
+
 		#ifdef FAILSAFE_ENABLE
 			FAILSAFE_VALUES_off;
 		#endif
@@ -1183,7 +1188,7 @@ static void protocol_init()
 
 		SUB_PROTO_VALID;
 		option_override = 0xFF;
-		
+
 		blink=millis();
 
 		debugln("Protocol selected: %d, sub proto %d, rxnum %d, option %d", protocol, sub_protocol, RX_num, option);
@@ -1226,7 +1231,7 @@ static void protocol_init()
 			index++;
 		}
 	}
-	
+
 	#if defined(WAIT_FOR_BIND) && defined(ENABLE_BIND_CH)
 		if( IS_AUTOBIND_FLAG_on && IS_BIND_CH_PREV_off && (cur_protocol[1]&0x80)==0 && mode_select == MODE_SERIAL)
 		{ // Autobind is active but no bind requested by either BIND_CH or BIND. But do not wait if in PPM mode...
@@ -1244,7 +1249,7 @@ static void protocol_init()
 		TIFR1 = OCF1A_bm ;						// clear compare A flag
 	#else
 		TIMER2_BASE->SR = 0x1E5F & ~TIMER_SR_CC1IF;	// Clear Timer2/Comp1 interrupt flag
-	#endif	
+	#endif
 	sei();										// enable global int
 	BIND_BUTTON_FLAG_off;						// do not bind/reset id anymore even if protocol change
 }
@@ -1308,7 +1313,7 @@ void update_serial_data()
 		if(protocol==PROTO_FRSKYX || protocol==PROTO_FRSKYX2)
 			option=FORCE_FRSKYX_TUNING;			// Use config-defined tuning value for FrSkyX
 		else
-	#endif 
+	#endif
 	#if defined(FORCE_FUTABA_TUNING) && defined(FUTABA_CC2500_INO)
 		if (protocol==PROTO_FUTABA)
 			option=FORCE_FUTABA_TUNING;			// Use config-defined tuning value for SFHSS
@@ -1423,7 +1428,7 @@ void update_serial_data()
 			{ // Request protocol to end bind
 				End_Bind();
 			}
-			
+
 	//store current protocol values
 	for(uint8_t i=0;i<3;i++)
 		cur_protocol[i] =  rx_ok_buff[i];
@@ -1449,7 +1454,7 @@ void update_serial_data()
 			debugln("DISABLE_CH_MAP_off");
 		}
 	}
-	
+
 	// decode channel/failsafe values
 	volatile uint8_t *p=rx_ok_buff+3;
 	uint8_t dec=-3;
@@ -1556,7 +1561,7 @@ void update_serial_data()
 		UCSR0B &= ~_BV(RXCIE0);					// RX interrupt disable
 	#endif
 	if(IS_RX_MISSED_BUFF_on)					// If the buffer is still valid
-	{	
+	{
 		if(rx_idx>=26 && rx_idx<RXBUFFER_SIZE)
 		{
 			rx_len=rx_idx;
@@ -1607,7 +1612,7 @@ void modules_reset()
 
 		USARTC0.BAUDCTRLA = 19 ;
 		USARTC0.BAUDCTRLB = 0 ;
-		
+
 		USARTC0.CTRLB = 0x18 ;
 		USARTC0.CTRLA = (USARTC0.CTRLA & 0xCC) | 0x11 ;
 		USARTC0.CTRLC = 0x2B ;
@@ -1644,7 +1649,7 @@ void modules_reset()
 		usart3_begin(100000,SERIAL_8E2);
 	#else
 		//ATMEGA328p
-		#include <util/setbaud.h>	
+		#include <util/setbaud.h>
 		UBRR0H = UBRRH_VALUE;
 		UBRR0L = UBRRL_VALUE;
 		UCSR0A = 0 ;	// Clear X2 bit
@@ -1675,7 +1680,7 @@ void modules_reset()
 #ifdef STM32_BOARD
 	void usart2_begin(uint32_t baud,uint32_t config )
 	{
-		usart_init(USART2); 
+		usart_init(USART2);
 		usart_config_gpios_async(USART2,GPIOA,PIN_MAP[PA3].gpio_bit,GPIOA,PIN_MAP[PA2].gpio_bit,config);
 		LED2_output;
 		usart_set_baud_rate(USART2, STM32_PCLK1, baud);
@@ -1691,7 +1696,7 @@ void modules_reset()
     	USART3_BASE->CR1 |= (USART_CR1_TE | USART_CR1_UE);		// Enable USART3 and TX
 	}
 	void init_HWTimer()
-	{	
+	{
 		HWTimer2.pause();										// Pause the timer2 while we're configuring it
 		TIMER2_BASE->PSC = 35;									// 36-1;for 72 MHZ /0.5sec/(35+1)
 		TIMER2_BASE->ARR = 0xFFFF;								// Count until 0xFFFF
@@ -1864,7 +1869,7 @@ static void __attribute__((unused)) calc_fh_channels(uint8_t num_ch)
 	uint8_t idx = 0;
 	uint32_t rnd = MProtocol_id;
 	uint8_t max=(num_ch/3)+2;
-	
+
 	while (idx < num_ch)
 	{
 		uint8_t i;
@@ -1992,7 +1997,7 @@ static void __attribute__((unused)) crc8_update(uint8_t byte)
 	#ifdef ORANGE_TX
 		ISR(USARTC0_RXC_vect)
 	#elif defined STM32_BOARD
-		void __irq_usart2()			
+		void __irq_usart2()
 	#else
 		ISR(USART_RX_vect)
 	#endif
@@ -2000,7 +2005,7 @@ static void __attribute__((unused)) crc8_update(uint8_t byte)
 		#ifdef ORANGE_TX
 			if((USARTC0.STATUS & 0x1C)==0)							// Check frame error, data overrun and parity error
 		#elif defined STM32_BOARD
-			if((USART2_BASE->SR & USART_SR_RXNE) && (USART2_BASE->SR &0x0F)==0)					
+			if((USART2_BASE->SR & USART_SR_RXNE) && (USART2_BASE->SR &0x0F)==0)
 		#else
 			UCSR0B &= ~_BV(RXCIE0) ;								// RX interrupt disable
 			sei() ;
@@ -2065,7 +2070,7 @@ static void __attribute__((unused)) crc8_update(uint8_t byte)
 		{
 			#ifdef STM32_BOARD
 				TIMER3_BASE->DIER &= ~TIMER_DIER_CC2IE;				// Disable Timer3/Comp2 interrupt
-			#else							
+			#else
 				CLR_TIMSK1_OCIE1B;									// Disable interrupt on compare B match
 				TX_RX_PAUSE_off;
 				tx_resume();
@@ -2265,7 +2270,7 @@ static void __attribute__((unused)) crc8_update(uint8_t byte)
 			len-- ;
 		}
 	}
-#endif	
+#endif
 
 /**************************/
 /**************************/
@@ -2295,7 +2300,7 @@ static void __attribute__((unused)) crc8_update(uint8_t byte)
 		static uint8_t gWDT_buffer_position=0;
 		#define gWDT_buffer_SIZE 32
 		static uint8_t gWDT_buffer[gWDT_buffer_SIZE];
-		gWDT_buffer[gWDT_buffer_position] = TCNT1L; // Record the Timer 1 low byte (only one needed) 
+		gWDT_buffer[gWDT_buffer_position] = TCNT1L; // Record the Timer 1 low byte (only one needed)
 		gWDT_buffer_position++;                     // every time the WDT interrupt is triggered
 		if (gWDT_buffer_position >= gWDT_buffer_SIZE)
 		{

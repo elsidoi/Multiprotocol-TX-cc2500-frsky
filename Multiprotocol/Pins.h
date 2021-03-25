@@ -229,10 +229,10 @@
 	#define	PE2_pin			PB5								//PE2
 	//CS pins
 	#define	CC25_CSN_pin	PB6								//CC2500
-	#define	NRF_CSN_pin		PB7								//NRF24L01
-	#define	CYRF_RST_pin	PB8								//CYRF RESET
-	#define	A7105_CSN_pin	PB9								//A7105
-	#define	CYRF_CSN_pin	PB12							//CYRF CSN
+	// #define	NRF_CSN_pin		PB7								//NRF24L01
+	// #define	CYRF_RST_pin	PB8								//CYRF RESET
+	// #define	A7105_CSN_pin	PB9								//A7105
+	// #define	CYRF_CSN_pin	PB12							//CYRF CSN
 	#define SPI_CSN_pin		PA15
 	//SPI pins	
 	#define	SCK_pin			PB13							//SCK
