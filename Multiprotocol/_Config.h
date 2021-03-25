@@ -290,7 +290,7 @@
 //In Serial mode failsafe is configured on the radio itself.
 //In PPM mode and only after the module is up and fully operational, press the bind button for at least 5sec to send the current stick positions as failsafe to the RX.
 //If you want to disable failsafe globally comment the line below using "//".
-#define FAILSAFE_ENABLE
+// #define FAILSAFE_ENABLE
 
 /**************************/
 /*** TELEMETRY SETTINGS ***/
@@ -361,7 +361,7 @@
 //This is available natively for ER9X, ERSKY9X and OpenTX.
 
 //If you do not plan to use the Serial mode comment this line using "//" to save Flash space
-#define ENABLE_SERIAL
+// #define ENABLE_SERIAL
 
 
 /*************************/
